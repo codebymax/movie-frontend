@@ -1,90 +1,51 @@
 import React from 'react';
-import HomeIcon from "@material-ui/icons/Home";
-import ReceiptIcon from "@material-ui/icons/Receipt";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import DesktopWindowsIcon from "@material-ui/icons/DesktopWindows";
-import SettingsIcon from "@material-ui/icons/Settings";
+import HomeIcon from '@material-ui/icons/Home';
+import MovieIcon from '@material-ui/icons/Movie';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
+import SettingsIcon from '@material-ui/icons/Settings';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import Topbar from './Topbar'
+import Topbar from './Topbar';
 
 function onClick(e, item) {
   window.alert(JSON.stringify(item, null, 2));
 }
 
 const items = [
-  { name: "home", label: "Home", Icon: HomeIcon },
+  { name: 'home', label: 'Home', Icon: HomeIcon },
+  'divider',
   {
-    name: "billing",
-    label: "Billing",
-    Icon: ReceiptIcon,
+    name: 'movies',
+    label: 'Movies',
+    Icon: MovieIcon,
     items: [
-      { name: "statements", label: "Statements", onClick },
-      { name: "reports", label: "Reports", onClick }
-    ]
+      { name: 'all', label: 'All', onClick },
+      { name: 'genre', label: 'Genres', onClick },
+      { name: 'director', label: 'Directors', onClick },
+    ],
   },
-  "divider",
+  'divider',
   {
-    name: "settings",
-    label: "Settings",
+    name: 'settings',
+    label: 'Settings',
     Icon: SettingsIcon,
-    items: [
-      { name: "profile", label: "Profile" },
-      { name: "insurance", label: "Insurance", onClick },
-      "divider",
-      {
-        name: "notifications",
-        label: "Notifications",
-        Icon: NotificationsIcon,
-        items: [
-          { name: "email", label: "Email", onClick },
-          {
-            name: "desktop",
-            label: "Desktop",
-            Icon: DesktopWindowsIcon,
-            items: [
-              { name: "schedule", label: "Schedule" },
-              { name: "frequency", label: "Frequency" }
-            ]
-          },
-          { name: "sms", label: "SMS" }
-        ]
-      }
-    ]
-  }
+    items: [{ name: 'profile', label: 'Profile' }],
+  },
 ];
 
-const App = () => (
-  <>
-    <Router>
-      <Topbar />
-    </Router>
-    <Sidebar items={items} />
-    
-    {/* <Sidebar items={items} /> */}
-  </>
-)
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+const App = () => {
+  const [search, setSearch] = React.useState('Title');
+
+  return (
+    <>
+      <Router>
+        <Topbar search={search} setSearch={setSearch} />
+      </Router>
+      <Sidebar items={items} />
+    </>
+  );
+};
 
 export default App;

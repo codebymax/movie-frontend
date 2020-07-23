@@ -1,0 +1,26 @@
+.navbar {
+  background-color: #204051;
+}
+a,
+.navbar-nav,
+.navbar-light .nav-link {
+  color: #e5e8e8;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.navbar-brand {
+  font-size: 1.4em;
+  color: #e5e8e8;
+}
+
+.navbar-brand {
+  color: white;
+}
+.form-center {
+  position: absolute !important;
+  left: 25%;
+  right: 25%;
+}
