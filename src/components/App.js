@@ -1,13 +1,13 @@
 import React from 'react';
 import HomeIcon from '@material-ui/icons/Home';
 import MovieIcon from '@material-ui/icons/Movie';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
+import PeopleAltRoundedIcon from '@material-ui/icons/PeopleAltRounded';
 import SettingsIcon from '@material-ui/icons/Settings';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import Welcome from './Welcome';
 
 function onClick(e, item) {
   window.alert(JSON.stringify(item, null, 2));
@@ -28,6 +28,16 @@ const items = [
   },
   'divider',
   {
+    name: 'user',
+    label: 'Users',
+    Icon: PeopleAltRoundedIcon,
+    items: [
+      { name: 'all', label: 'All', onClick },
+      { name: 'friend', label: 'Friends', onClick },
+    ],
+  },
+  'divider',
+  {
     name: 'settings',
     label: 'Settings',
     Icon: SettingsIcon,
@@ -43,7 +53,10 @@ const App = () => {
       <Router>
         <Topbar search={search} setSearch={setSearch} />
       </Router>
-      <Sidebar items={items} />
+      <div style={{ display: 'flex' }}>
+        <Sidebar items={items} />
+        <Welcome />
+      </div>
     </>
   );
 };
