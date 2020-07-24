@@ -1,6 +1,6 @@
-import React from 'react';
-import { Nav, Navbar, Form, FormControl, Dropdown } from 'react-bootstrap';
-import styled from 'styled-components';
+import React from 'react'
+import { Nav, Navbar, Form, Dropdown, Col, Button } from 'react-bootstrap'
+import styled from 'styled-components'
 
 const Styles = styled.div`
   .navbar {
@@ -30,55 +30,65 @@ const Styles = styled.div`
     color: black;
     background-color: #204051;
   }
-`;
+`
 
-const Topbar = props => {
+const Topbar = (props) => {
   function select(key, e) {
-    props.setSearch(e.target.innerHTML);
+    props.setSearch(e.target.innerHTML)
   }
 
   return (
     <Styles>
-      <Navbar expand='lg'>
-        <Navbar.Brand href='/'>Movie Manager</Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Nav className='ml-auto'>
-          <Nav.Item>
-            <Dropdown onSelect={select} navbar={true}>
-              <Dropdown.Toggle
-                style={{
-                  backgroundColor: 'transparent',
-                  border: 'none',
-                  color: '#e5e8e8',
-                  paddingRight: '20px',
-                }}
-              >
-                {props.search}
-              </Dropdown.Toggle>
+      <Navbar expand="lg">
+        <Navbar.Brand href="/">Movie Manager</Navbar.Brand>
+        <Nav className="col-8">
+          <Nav.Item className="col-10">
+            <Form>
+              <Form.Row>
+                <Col style={{ marginRight: '30px' }}>
+                  <Dropdown onSelect={select}>
+                    <Dropdown.Toggle
+                      style={{
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        color: '#e5e8e8',
+                      }}
+                    >
+                      {props.search}
+                    </Dropdown.Toggle>
 
-              <Dropdown.Menu>
-                <Dropdown.Item as='button'>Title</Dropdown.Item>
-                <Dropdown.Item as='button'>Director</Dropdown.Item>
-                <Dropdown.Item as='button'>Actor</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Nav.Item>
-          <Nav.Item>
-            <Form className='form-center'>
-              <FormControl type='text' placeholder='Search' className='' />
+                    <Dropdown.Menu style={{ color: 'black' }}>
+                      <Dropdown.Item as="span">Title</Dropdown.Item>
+                      <Dropdown.Item as="span">Director</Dropdown.Item>
+                      <Dropdown.Item as="span">Actor</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Col>
+                <Col md={9}>
+                  <Form.Control type="text" placeholder="Search" className="" />
+                </Col>
+                <Col>
+                  <Button variant="outline-info" type="submit">
+                    Search
+                  </Button>
+                </Col>
+              </Form.Row>
             </Form>
           </Nav.Item>
         </Nav>
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='ml-auto'>
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
             <Nav.Item>
-              <Nav.Link href='/login'>Login</Nav.Link>
+              <Nav.Link>Login</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/login">Sign up</Nav.Link>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
     </Styles>
-  );
-};
+  )
+}
 
-export default Topbar;
+export default Topbar
