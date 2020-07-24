@@ -1,6 +1,6 @@
-import React from 'react'
-import { Nav, Navbar, Form, Dropdown, Col, Button } from 'react-bootstrap'
-import styled from 'styled-components'
+import React from 'react';
+import { Nav, Navbar, Form, Dropdown, Col } from 'react-bootstrap';
+import styled from 'styled-components';
 
 const Styles = styled.div`
   .navbar {
@@ -21,28 +21,19 @@ const Styles = styled.div`
       color: white;
     }
   }
-  .form-center {
-    position: absolute !important;
-    left: 25%;
-    right: 25%;
-  }
-  .testButton {
-    color: black;
-    background-color: #204051;
-  }
-`
+`;
 
-const Topbar = (props) => {
+const Topbar = props => {
   function select(key, e) {
-    props.setSearch(e.target.innerHTML)
+    props.setSearch(e.target.innerHTML);
   }
 
   return (
     <Styles>
-      <Navbar expand="lg">
-        <Navbar.Brand href="/">Movie Manager</Navbar.Brand>
-        <Nav className="col-8">
-          <Nav.Item className="col-10">
+      <Navbar expand='lg'>
+        <Navbar.Brand href='/'>Movie Manager</Navbar.Brand>
+        <Nav className='col-8'>
+          <Nav.Item className='col-10'>
             <Form>
               <Form.Row>
                 <Col style={{ marginRight: '30px' }}>
@@ -58,37 +49,35 @@ const Topbar = (props) => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu style={{ color: 'black' }}>
-                      <Dropdown.Item as="span">Title</Dropdown.Item>
-                      <Dropdown.Item as="span">Director</Dropdown.Item>
-                      <Dropdown.Item as="span">Actor</Dropdown.Item>
+                      <Dropdown.Item as='span'>Title</Dropdown.Item>
+                      <Dropdown.Item as='span'>Director</Dropdown.Item>
+                      <Dropdown.Item as='span'>Actor</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </Col>
                 <Col md={9}>
-                  <Form.Control type="text" placeholder="Search" className="" />
+                  <Form.Control type='text' placeholder='Search' className='' />
                 </Col>
                 <Col>
-                  <Button variant="outline-info" type="submit">
-                    Search
-                  </Button>
+                  <Nav.Link>Search</Nav.Link>
                 </Col>
               </Form.Row>
             </Form>
           </Nav.Item>
         </Nav>
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
+        <Navbar.Collapse id='basic-navbar-nav'>
+          <Nav className='ml-auto'>
             <Nav.Item>
-              <Nav.Link>Login</Nav.Link>
+              <Nav.Link onClick={props.modalShow}>Login</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/login">Sign up</Nav.Link>
+              <Nav.Link href='/login'>Sign up</Nav.Link>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
     </Styles>
-  )
-}
+  );
+};
 
-export default Topbar
+export default Topbar;

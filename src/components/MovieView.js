@@ -1,10 +1,9 @@
 import React from 'react';
 import MovieCard from './MovieCard';
-import { Row } from 'react-bootstrap';
 
 const MovieView = props => (
   <>
-    <div className='movieList' style={{ display: 'flex' }}>
+    <div style={{ display: 'flex' }}>
       <div
         className='mb-10'
         style={{

@@ -6,7 +6,13 @@ const MovieCard = props => {
 
   return (
     <>
-      <Card bg='light' style={{ width: '100%' }}>
+      <Card
+        bg='light'
+        style={{
+          width: '100%',
+          boxShadow: '1px 1px 2px 0px rgba(97,106,107,1)',
+        }}
+      >
         <Card.Body style={{ backgroundColor: 'linen' }}>
           <Row>
             <Col md={4} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
