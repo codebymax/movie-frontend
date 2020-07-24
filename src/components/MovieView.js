@@ -4,7 +4,7 @@ import { Row } from 'react-bootstrap';
 
 const MovieView = props => (
   <>
-    <div style={{ display: 'flex' }}>
+    <div className='movieList' style={{ display: 'flex' }}>
       <div
         className='mb-10'
         style={{

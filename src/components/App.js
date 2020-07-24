@@ -10,6 +10,7 @@ import Topbar from './Topbar';
 import Page from './Page';
 import AccountModal from './AccountModal';
 import axios from 'axios';
+import $ from 'jquery';
 
 const App = () => {
   const [page, setPage] = React.useState('home');
@@ -23,6 +24,7 @@ const App = () => {
     setPage(item.name);
     const resp = await axios.get(`http://localhost:5000/1/all`);
     setMovies(resp.data.movies);
+    $('.sidebar').height((250 * resp.data.movies.length).toString() + 'px');
   };
 
   const items = [
@@ -54,35 +56,6 @@ const App = () => {
       label: 'Settings',
       Icon: SettingsIcon,
       items: [{ name: 'profile', label: 'Profile' }],
-    },
-  ];
-
-  const movies_hard = [
-    {
-      overview:
-        "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
-      languages: ['English'],
-      title: 'Interstellar',
-      genres: ['Adventure', 'Drama', 'Sci-Fi', 'Thriller'],
-      posterPath:
-        'https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg',
-      year: 2014,
-      release_date: '07 11 2014',
-      id: 'tt0816692',
-      userIds: [0],
-      director: ['Christopher Nolan'],
-      cast: [
-        'Ellen Burstyn',
-        'Matthew McConaughey',
-        'Mackenzie Foy',
-        'John Lithgow',
-      ],
-      runtime: 169,
-      reviews: {
-        'Rotten Tomatoes': 72.0,
-        Metascore: 74.0,
-      },
-      rating: 'PG-13',
     },
   ];
 
