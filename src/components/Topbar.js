@@ -32,6 +32,22 @@ const Styles = styled.div`
   }
 `;
 
+const LoginInfo = props => {
+  if (props.user !== '') {
+    return <Nav.Item>Logged in with user id {props.user}</Nav.Item>;
+  } else {
+    return (
+      <>
+        <Nav.Item>
+          <Nav.Link onClick={props.modalShow}>Login</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link onClick={props.modalShow}>Sign up</Nav.Link>
+        </Nav.Item>
+      </>
+    );
+  }
+};
 const Topbar = props => {
   function select(key, e) {
     props.setSearch(e.target.innerHTML);
@@ -76,12 +92,7 @@ const Topbar = props => {
         </Nav>
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto'>
-            <Nav.Item>
-              <Nav.Link onClick={props.modalShow}>Login</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link onClick={props.modalShow}>Sign up</Nav.Link>
-            </Nav.Item>
+            <LoginInfo user={props.user} modalShow={props.modalShow} />
           </Nav>
         </Navbar.Collapse>
       </Navbar>

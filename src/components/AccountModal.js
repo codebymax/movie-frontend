@@ -3,14 +3,34 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import $ from 'jquery';
 
-const AccountModal = ({ show, setShow, setUser, setGenre, onClick }) => {
+const AccountModal = ({
+  show,
+  setShow,
+  setUser,
+  setGenre,
+  setPage,
+  setMovies,
+}) => {
   const handleClose = () => setShow(0);
 
-  const buildGenre = genre => {
+  const onClickGenre = async (e, item) => {
+    setPage('movie_all');
+    //todo
+    if (item.user !== '') {
+      const resp = await axios.get(
+        `http://localhost:5000/1/search/genre/?input=` + item.label
+      );
+      setMovies(resp.data.movies);
+      $('.sidebar').height((50 * resp.data.movies.length).toString() + 'px');
+    }
+  };
+
+  const buildGenre = (genre, user_id) => {
     return {
       name: genre.toLowerCase(),
       label: genre,
-      onClick,
+      user: user_id,
+      onClick: onClickGenre,
     };
   };
 
@@ -24,12 +44,15 @@ const AccountModal = ({ show, setShow, setUser, setGenre, onClick }) => {
         password
     );
     if (resp.data.response === 1) {
+      const user_id = resp.data.message;
       setUser(resp.data.message);
       const resp2 = await axios.get(
         `http://localhost:5000/` + resp.data.message + `/search/genre/all`
       );
       setShow(0);
-      const genre_list = resp2.data.genres.map(genre => buildGenre(genre));
+      const genre_list = resp2.data.genres.map(genre =>
+        buildGenre(genre, user_id)
+      );
       setGenre({ name: 'movie_genre', label: 'Genres', items: genre_list });
       $('.sidebar').height((50 * genre_list.length).toString() + 'px');
     } else {

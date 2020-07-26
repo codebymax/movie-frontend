@@ -43,21 +43,6 @@ const App = () => {
     }
   };
 
-  const onClickGenre = async (e, item) => {
-    setPage('movie_all');
-    console.log(user);
-    //todo
-    if (user === '') {
-      const resp = await axios.get(
-        `http://localhost:5000/1/search/genre/?input=` + item.label
-      );
-      console.log('hello');
-      console.log(resp);
-      setMovies(resp.data.movies);
-      $('.sidebar').height((180 * resp.data.movies.length).toString() + 'px');
-    }
-  };
-
   const items = [
     { name: 'home', label: 'Home', Icon: HomeIcon, onClick },
     'divider',
@@ -97,10 +82,16 @@ const App = () => {
         setShow={setShow}
         setUser={setUser}
         setGenre={setGenre}
-        onClick={onClickGenre}
+        setPage={setPage}
+        setMovies={setMovies}
       />
       <Router>
-        <Topbar search={search} setSearch={setSearch} modalShow={handleShow} />
+        <Topbar
+          search={search}
+          setSearch={setSearch}
+          modalShow={handleShow}
+          user={user}
+        />
       </Router>
       <div style={{ overflow: 'scroll' }}>
         <Sidebar items={items} setPage={setPage} />
