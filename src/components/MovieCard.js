@@ -13,7 +13,7 @@ const MovieCard = props => {
           boxShadow: '1px 1px 2px 0px rgba(97,106,107,1)',
         }}
       >
-        <Card.Body style={{ backgroundColor: 'linen' }}>
+        <Card.Body style={{ backgroundColor: 'white' }}>
           <Row>
             <Col md={4} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
               <Card.Title>{movie.title}</Card.Title>
@@ -58,7 +58,7 @@ const MovieCard = props => {
               <Image
                 src={movie.posterPath}
                 thumbnail
-                style={{ maxHeight: '250px' }}
+                style={{ maxHeight: '180px' }}
               />
             </Col>
           </Row>

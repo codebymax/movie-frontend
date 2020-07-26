@@ -4,15 +4,21 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
   .navbar {
-    background-color: #204051;
+    background-color: #596e79;
   }
   a,
   .navbar-nav,
   .navbar-light .nav-link {
     color: #e5e8e8;
     &:hover {
+      text-decoration: none;
       color: white;
     }
+    &:focus {
+      text-decoration: none;
+      color: #e5e8e8;
+    }
+    text-decoration: none;
   }
   .navbar-brand {
     font-size: 1.4em;
@@ -20,6 +26,9 @@ const Styles = styled.div`
     &:hover {
       color: white;
     }
+  }
+  .a:visited {
+    text-decoration: none;
   }
 `;
 
@@ -71,7 +80,7 @@ const Topbar = props => {
               <Nav.Link onClick={props.modalShow}>Login</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href='/login'>Sign up</Nav.Link>
+              <Nav.Link onClick={props.modalShow}>Sign up</Nav.Link>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>
