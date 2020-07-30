@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This project is a frontend for the movie-manager API. It provides a couple of React pages dedicated to interacting with the backend API. You can search for movies, sort movies, and more. 
+
+This project is also the first time I was exposed to React. It is already getting messy, and it might get messier as more features get added. The goal of this project was to expose me to the React framework and get some experience using the tools React offers. There is still much left for me to learn about React, and I'm sure if any experienced React developer looked at my code, they would be disgusted. But it worked for my use case and gave me a playground to play around with React's tools. 
+
 ## Available Scripts
 
 In the project directory, you can run:
