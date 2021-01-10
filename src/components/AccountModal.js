@@ -17,6 +17,7 @@ const AccountModal = ({
     setPage('movie_all');
     //todo
     if (item.user !== '') {
+      setMovies([]);
       const resp = await axios.get(
         `http://localhost:5000/1/search/genre/?input=` + item.label
       );

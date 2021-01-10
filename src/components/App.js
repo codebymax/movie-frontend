@@ -15,6 +15,7 @@ import $ from 'jquery';
 const App = () => {
   const [page, setPage] = React.useState('home');
   const [search, setSearch] = React.useState('Title');
+  const [searchStr, setSearchStr] = React.useState('tenet');
   const [show, setShow] = React.useState(0);
   const [movies, setMovies] = React.useState([]);
   const [user, setUser] = React.useState('');
@@ -89,7 +90,11 @@ const App = () => {
         <Topbar
           search={search}
           setSearch={setSearch}
+          searchStr={searchStr}
+          setSearchStr={setSearchStr}
           modalShow={handleShow}
+          setPage={setPage}
+          setMovies={setMovies}
           user={user}
         />
       </Router>

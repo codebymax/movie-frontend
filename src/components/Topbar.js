@@ -1,6 +1,8 @@
 import React from 'react';
 import { Nav, Navbar, Form, Dropdown, Col } from 'react-bootstrap';
 import styled from 'styled-components';
+import axios from 'axios';
+import $ from 'jquery';
 
 const Styles = styled.div`
   .navbar {
@@ -48,6 +50,21 @@ const LoginInfo = props => {
     );
   }
 };
+
+const search = async (key, str, user, setMovies, setPage) => {
+  setPage('movie_all');
+  if (user !== '') {
+    setMovies([])
+    const resp = await axios.get(
+      `http://localhost:5000/` + user + `/search/` + key.toLowerCase() + `/?input=` + str
+    );
+    setMovies(resp.data.movies);
+    if ($('.sidebar').height < (250 * resp.data.movies.length + 75)) {
+      $('.sidebar').height((250 * resp.data.movies.length + 75).toString() + 'px');
+    }
+  }
+};
+
 const Topbar = props => {
   function select(key, e) {
     props.setSearch(e.target.innerHTML);
@@ -57,7 +74,7 @@ const Topbar = props => {
     <Styles>
       <Navbar expand='lg'>
         <Navbar.Brand href='/'>Movie Manager</Navbar.Brand>
-        <Nav className='col-8'>
+        <Nav className='col-8' onSelect={(selectedKey) => search(selectedKey, props.searchStr, props.user, props.setMovies, props.setPage)}>
           <Nav.Item className='col-10'>
             <Form>
               <Form.Row>
@@ -81,10 +98,10 @@ const Topbar = props => {
                   </Dropdown>
                 </Col>
                 <Col md={9}>
-                  <Form.Control type='text' placeholder='Search' className='' />
+                  <Form.Control type='text' placeholder='Search' className='' onChange={(e) => props.setSearchStr(e.target.value)} />
                 </Col>
                 <Col>
-                  <Nav.Link>Search</Nav.Link>
+                  <Nav.Link eventKey={props.search}>Search</Nav.Link>
                 </Col>
               </Form.Row>
             </Form>
