@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieCard from './MovieCard';
 import LoadingView from './LoadingView';
+import Pagination from './Pagination';
 
 const MovieView = props => {
   if (props.movies.length === 0) {
@@ -22,6 +23,7 @@ const MovieView = props => {
                 <p></p>
               </>
             ))}
+            <Pagination page={props.page} setPage={props.setPage} update={props.update} />
           </div>
         </div>
       </>

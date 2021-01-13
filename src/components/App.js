@@ -14,6 +14,7 @@ import $ from 'jquery';
 
 const App = () => {
   const [page, setPage] = React.useState('home');
+  const [paginate, setPaginate] = React.useState(1);
   const [search, setSearch] = React.useState('Title');
   const [searchStr, setSearchStr] = React.useState('tenet');
   const [show, setShow] = React.useState(0);
@@ -38,11 +39,21 @@ const App = () => {
     setPage(item.name);
     console.log(user);
     if (user !== '') {
-      const resp = await axios.get(`http://localhost:5000/` + user + `/all`);
+      const resp = await axios.get(`http://localhost:5000/` + user + `/all?page=` + paginate);
       setMovies(resp.data.movies);
-      $('.sidebar').height((180 * resp.data.movies.length).toString() + 'px');
+      $('.sidebar').height((250 * resp.data.movies.length).toString() + 'px');
     }
   };
+
+  const onUpdatePage = async (e, item) => {
+    console.log(user);
+    setMovies([]);
+    if (user !== '') {
+      const resp = await axios.get(`http://localhost:5000/` + user + `/all?page=` + paginate);
+      setMovies(resp.data.movies);
+      $('.sidebar').height((250 * resp.data.movies.length).toString() + 'px');
+    }
+  }
 
   const items = [
     { name: 'home', label: 'Home', Icon: HomeIcon, onClick },
@@ -100,7 +111,7 @@ const App = () => {
       </Router>
       <div style={{ overflow: 'scroll' }}>
         <Sidebar items={items} setPage={setPage} />
-        <Page cur={page} movies={movies} user={user} />
+        <Page cur={page} movies={movies} user={user} page={paginate} setPage={setPaginate} update={onUpdatePage} />
       </div>
     </>
   );

@@ -59,7 +59,11 @@ const search = async (key, str, user, setMovies, setPage) => {
       `http://localhost:5000/` + user + `/search/` + key.toLowerCase() + `/?input=` + str
     );
     setMovies(resp.data.movies);
-    if ($('.sidebar').height < (250 * resp.data.movies.length + 75)) {
+    $('.sidebar').height((250 * resp.data.movies.length + 75).toString() + 'px');
+    if ((250 * resp.data.movies.length + 75) < window.innerHeight) {
+      $('.sidebar').height(window.innerHeight);
+    }
+    else {
       $('.sidebar').height((250 * resp.data.movies.length + 75).toString() + 'px');
     }
   }

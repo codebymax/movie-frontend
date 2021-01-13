@@ -19,7 +19,7 @@ const AccountModal = ({
     if (item.user !== '') {
       setMovies([]);
       const resp = await axios.get(
-        `http://localhost:5000/1/search/genre/?input=` + item.label
+        `http://localhost:5000/1/search/genre/?input=` + item.label + `&page=` + 1
       );
       setMovies(resp.data.movies);
       $('.sidebar').height((50 * resp.data.movies.length).toString() + 'px');

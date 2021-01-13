@@ -5,7 +5,6 @@ import Divider from '@material-ui/core/Divider'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import Collapse from '@material-ui/core/Collapse'
-import $ from 'jquery';
 
 const SidebarItem = ({
   depthStep = 10,
