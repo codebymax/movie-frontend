@@ -46,6 +46,7 @@ const App = () => {
   const onClickAll = async (e, item) => {
     setScreen(item.name);
     console.log(user);
+    setMovies([]);
     if (user !== '') {
       const resp = await axios.get(`http://localhost:5000/` + user + `/all?page=` + page);
       setMovies(resp.data.movies);
@@ -55,6 +56,7 @@ const App = () => {
 
   const onClickRandom = async (e, item) => {
     setScreen('random');
+    setMovies([]);
     if (user !== '') {
       const resp = await axios.get(`http://localhost:5000/` + user + `/random`);
       setMovies(resp.data.movies);

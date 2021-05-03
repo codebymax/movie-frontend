@@ -3,17 +3,23 @@ import { Card, Row, Col, Image } from 'react-bootstrap';
 
 const MovieCard = props => {
   const movie = props.movie;
+  const [color, setColor] = React.useState('white')
+  const hover_color = '#bbbbbb'
 
   return (
     <>
       <Card
-        bg='light'
+        onClick={() => alert("Hello from here")}
+        bg={color}
         style={{
           width: '100%',
           boxShadow: '1px 1px 2px 0px rgba(97,106,107,1)',
+          backgroundColor: color
         }}
+        onMouseEnter={() => setColor(hover_color)}
+        onMouseLeave={() => setColor('white')}
       >
-        <Card.Body style={{ backgroundColor: 'white' }}>
+        <Card.Body>
           <Row>
             <Col md={4} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
               <Card.Title>{movie.title}</Card.Title>
