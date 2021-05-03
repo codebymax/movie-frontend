@@ -5,24 +5,26 @@ import $ from 'jquery';
 
 const AccountModal = ({
   show,
+  page,
   setShow,
   setUser,
   setGenre,
+  setScreen,
   setPage,
   setMovies,
 }) => {
   const handleClose = () => setShow(0);
 
   const onClickGenre = async (e, item) => {
-    setPage('movie_all');
-    //todo
+    setScreen(item.label);
     if (item.user !== '') {
       setMovies([]);
+      setPage(1);
       const resp = await axios.get(
-        `http://localhost:5000/1/search/genre/?input=` + item.label + `&page=` + 1
+        `http://localhost:5000/` + item.user + `/genre/?genre=` + item.label + `&page=` + page
       );
       setMovies(resp.data.movies);
-      $('.sidebar').height((50 * resp.data.movies.length).toString() + 'px');
+      //$('.sidebar').height((50 * resp.data.movies.length).toString() + 'px');
     }
   };
 
@@ -46,9 +48,9 @@ const AccountModal = ({
     );
     if (resp.data.response === 1) {
       const user_id = resp.data.message;
-      setUser(resp.data.message);
+      setUser(user_id);
       const resp2 = await axios.get(
-        `http://localhost:5000/` + resp.data.message + `/search/genre/all`
+        `http://localhost:5000/` + user_id + `/genre/list`
       );
       setShow(0);
       const genre_list = resp2.data.genres.map(genre =>

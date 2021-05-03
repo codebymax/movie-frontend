@@ -51,8 +51,8 @@ const LoginInfo = props => {
   }
 };
 
-const search = async (key, str, user, setMovies, setPage) => {
-  setPage('movie_all');
+const search = async (key, str, user, setMovies, setScreen) => {
+  setScreen('movie_all');
   if (user !== '') {
     setMovies([])
     const resp = await axios.get(
@@ -78,7 +78,7 @@ const Topbar = props => {
     <Styles>
       <Navbar expand='lg'>
         <Navbar.Brand href='/'>Movie Manager</Navbar.Brand>
-        <Nav className='col-8' onSelect={(selectedKey) => search(selectedKey, props.searchStr, props.user, props.setMovies, props.setPage)}>
+        <Nav className='col-8' onSelect={(selectedKey) => search(selectedKey, props.searchStr, props.user, props.setMovies, props.setScreen)}>
           <Nav.Item className='col-10'>
             <Form>
               <Form.Row>

@@ -5,9 +5,9 @@ import MovieView from './MovieView'
 const Page = (props) => {
   if (props.cur === 'home') {
     return <Welcome />
-  } else if (props.cur === 'movie_all') {
-    return <MovieView movies={props.movies} page={props.page} setPage={props.setPage} update={props.update} />
-  }
+  } else {
+    return <MovieView cur={props.cur} movies={props.movies} page={props.page} setPage={props.setPage} update={props.update} />
+  } 
 }
 
 export default Page

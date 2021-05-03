@@ -1,19 +1,19 @@
 import React from 'react';
 
 const Pagination = props => {
-    const nextPage = e => {
+    const nextPage = async e => {
         var cur = props.page
-        props.setPage(cur+1)
-        props.update()
+        await props.setPage(cur+1)
+        props.update(props.screen)
     }
 
-    const prevPage = e => {
+    const prevPage = async e => {
         var cur = props.page
         if (cur === 1) {
             return
         }
-        props.setPage(cur-1)
-        props.update()
+        await props.setPage(cur-1)
+        props.update(props.screen)
     }
 
     if (props.page === -1) {
