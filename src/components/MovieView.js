@@ -1,5 +1,6 @@
 import React from 'react';
-import MovieCard from './MovieCard';
+import CardDeck from 'react-bootstrap/CardDeck';
+import MovieCardSmall from './MovieCardSmall';
 import LoadingView from './LoadingView';
 import Pagination from './Pagination';
 
@@ -10,7 +11,7 @@ const MovieView = props => {
     if (props.cur !== 'random') {
       return (
         <>
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex',  }}>
             <div
               className='mb-10'
               style={{
@@ -18,12 +19,18 @@ const MovieView = props => {
                 padding: '15px',
               }}
             >
-              {props.movies.map(movie => (
-                <>
-                  <MovieCard key={movie.id} movie={movie} />
-                  <p></p>
-                </>
-              ))}
+              <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
+                {props.movies.map(movie => (
+                  <div 
+                    style={{
+                      display: 'flex',
+                      paddingBottom: '20px'
+                    }}
+                  >
+                    <MovieCardSmall key={movie.id} movie={movie} style={{flex: 1}}/>
+                  </div>
+                ))}
+              </CardDeck>
               <Pagination screen={props.cur} page={props.page} setPage={props.setPage} update={props.update} />
             </div>
           </div>
@@ -41,12 +48,18 @@ const MovieView = props => {
                 padding: '15px',
               }}
             >
-              {props.movies.map(movie => (
-                <>
-                  <MovieCard key={movie.id} movie={movie} />
-                  <p></p>
-                </>
-              ))}
+              <CardDeck style={{ display: 'flex', flexDirection: 'row' }}>
+                {props.movies.map(movie => (
+                  <div 
+                    style={{
+                      display: 'flex',
+                      paddingBottom: '20px'
+                    }}
+                  >
+                    <MovieCardSmall key={movie.id} movie={movie} />
+                  </div>
+                ))}
+              </CardDeck>
             </div>
           </div>
         </>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Row, Col, Image } from 'react-bootstrap';
 
-const MovieCard = props => {
+const MovieCardBig = props => {
   const movie = props.movie;
   const [color, setColor] = React.useState('white')
   const hover_color = '#bbbbbb'
@@ -9,7 +9,7 @@ const MovieCard = props => {
   return (
     <>
       <Card
-        onClick={() => alert("Hello from here")}
+        onClick={props.onClick}
         bg={color}
         style={{
           width: '100%',
@@ -74,4 +74,4 @@ const MovieCard = props => {
   );
 };
 
-export default MovieCard;
+export default MovieCardBig;
